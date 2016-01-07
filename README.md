@@ -6,7 +6,7 @@ Introduction:
 ---
 
 When the user clicks a link starting with http://launch.yourwebsite.com it hits this service which tries to launch our
-app using a custom doing:// protocol. If the user has our app installed, that doing:// protocol will exist and the link
+app using a custom `appname://` protocol. If the user has our app installed, that `appname://` protocol will exist and the link
 will open directly to the spot in our app they are trying to go. If they do not have the app installed, but they are
 using an iPhone of Android device, they will be taken to the respective store to install our app. If they are not using
 a mobile device, they will be taken to our home page to learn more about the app.
