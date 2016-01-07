@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>App Launcher</title>
+  </head>
+  <body>
+    <script>
+      var appWebsite = 'http://yourwebsite.com';
+      var appLinkIOS = 'https://itunes.apple.com/us/app/my-app-name/id0000000000?ls=1&mt=8';
+      var appLinkAndroid = 'https://play.google.com/store/apps/details?id=com.mycompany.appname';
+      var appProtocol = 'appname://';
+
+      (function(){
+        var launch = window.location.pathname;
+
+        if(launch.charAt(0) === '/') {
+          launch = launch.slice(1);
+        }
+
+        var fallbackLink = appWebsite;
+        var isiOS = navigator.userAgent.match('iPad') || navigator.userAgent.match('iPhone') || navigator.userAgent.match('iPod');
+        var isAndroid = navigator.userAgent.match('Android');
+
+        if( !isiOS && !isAndroid) {
+          window.location.replace(fallbackLink);
+          return;
+        } else {
+
+          if(isAndroid) {
+            window.open(appProtocol.concat(launch));
+          } else {
+            window.location.replace(appProtocol.concat(launch));
+          }
+
+          var appLink = (isAndroid) ? appLinkAndroid : appLinkIOS;
+
+          window.setTimeout(function(){
+            window.location.replace(appLink);
+          }, 7500);
+        }
+
+        window.setTimeout(function(){
+          window.location.replace(fallbackLink);
+        }, 10000);
+      })();
+    </script>
+  </body>
+</html>
